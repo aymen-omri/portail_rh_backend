@@ -1,0 +1,50 @@
+<div class="all">
+<div class="wrapper">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<div class="banner">
+<div class="content">
+
+  
+<div class="body-background">
+  <div class="center">
+    <img class="logo" src="assets/logo2.png" alt="SmartUP" width="280px" height="75px" >
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+      <div class="txt_field">
+        <input type="string" name="matricule" formControlName="matricule" required>
+        <span></span>
+        <label>Matricule</label> 
+      </div>
+      <div class="txt_field">
+        <input type="password" name="password" formControlName="password" required>
+        <span></span>
+        <label>Mot de passe</label>
+      </div>
+      <div class="pass">Mot de passe oublié?</div><br>
+      <input type="submit" [disabled]="myForm.invalid" value="Login" >
+
+      <div class="signup_link">
+        Vous n'avez pas encore un compte?
+         <br> 
+        <a class="button"  (click)="goToSignup()" style="cursor: pointer">
+          Créer un compte</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+</div>
+</div>
+
+</div>

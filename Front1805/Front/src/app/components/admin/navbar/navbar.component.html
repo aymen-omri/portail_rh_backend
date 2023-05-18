@@ -1,0 +1,22 @@
+<!-- img src="assets/logo.jpg" alt="SmartUP" width="237" height="65" -->
+
+<nav class="navbar navbar-expand navbar-light bg-secondary px-2">
+
+    <div class="side-nav-button p-2 me-3 text-dark" (click) ="SideNavToggle()" >
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <a class="navbar-brand px-4" href="">
+        <img src="assets/logo2.png" alt="SmartUP" width="177" height="48">
+    </a>
+
+    <div class="profile-logo dropdown ms-auto">
+        <button class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown"> Nitchamada </button>
+        <ul class="dropdown-menu dropdown-menu-secondary">
+            <li><a href="dashboard/profile" class="dropdown-item">Profile</a></li>
+            <li><a href="#" class="dropdown-item">Documents</a></li>
+            <li><a href="#" class="dropdown-item">Notifications</a></li>
+            <li><a href="#" class="dropdown-item" (click)="logout()">Logout</a></li>
+        </ul>
+    </div>
+</nav>

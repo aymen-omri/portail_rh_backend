@@ -1,0 +1,18 @@
+<div class="user-details">
+  <div class="row">
+    <div class="col-lg">
+      <p>Email: {{ demande!.email }}</p>
+      <p>First Name: {{ demande!.firstName }}</p>
+      <p>Last Name: {{ demande!.lastName }}</p>
+      <p>Birthday: {{ demande!.birthday }}</p>
+      <p>CIN: {{ demande!.cin }}</p>
+      <p>Genre: {{ demande!.genre }}</p>
+      <p>Phone Number: {{ demande!.phoneNumber }}</p>
+      <p>Address: {{ demande!.adresse }}</p>
+    </div>
+    <div class="col-lg buttons">
+      <button class="btn btn-primary" (click)="acceptDemande()">Accepter</button>
+      <button class="btn btn-danger" (click)="declineDemande()">rejeter</button>
+    </div>
+  </div>
+</div>

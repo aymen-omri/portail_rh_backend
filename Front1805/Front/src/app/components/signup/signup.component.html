@@ -1,0 +1,98 @@
+
+<div class="wrapper">
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+</div>
+
+<button routerLink="/" class="btn btn-secondary retour">
+    <i class="fas fa-arrow-left"></i> Retour
+  </button>
+
+<div class="banner">
+	<div class="content">
+        
+        <div class="container">
+            <div class="title">Création d'un compte</div>
+            <div class="content">
+              <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                <div class="user-details">
+                  <div class="input-box">
+
+
+                    <span class="details">Nom:</span>
+                    <input type="text" placeholder="Entrer votre Nom" name="nom" formControlName="lastName" required>
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Prénom:</span>
+                    <input type="text" placeholder="Entrer votre prénom" name="prenom" formControlName="firstName" required>
+                  </div>
+
+
+                  <div class="input-box">
+                    <span class="details">N° CIN / N° Passeport:</span>
+                    <input type="number" placeholder="Entrer votre N° CIN/Passeport" name="cinPasseport" formControlName="cin" required>
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Email:</span>
+                    <input type="email" placeholder="Entrer votre Email" name="email" formControlName="email" required>
+                  </div>
+
+
+                  <div class="input-box">
+                    <span class="details">Mot de passe:</span>
+                    <input type="password" placeholder="Entrer votre Mot de passe" name="password" formControlName="password" required>
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Date de Naissance:</span>
+                    <input type="date" placeholder="Choisir votre Date de naissance" name="dateNaissance" formControlName="birthday" required min="1950-01-01" max="2004-01-01">
+                  </div>
+
+
+                  <div class="input-box">
+                    <span class="details">Adresse:</span>
+                    <input type="text" placeholder="Entrer votre Adresse" name="adresse" formControlName="adresse" required>
+                  </div>
+                  <div class="input-box">
+                    <span class="details">N° Téléphone:</span>
+                    <input type="text" placeholder="Entrer votre N° de Téléphone" name="telephone" formControlName="phoneNumber" required>
+                  </div>
+
+
+                </div>
+
+
+                <div class="gender-details">
+                  <input type="radio" name="gender" id="dot-1" value="Masculin" (change)="onMasculin($event)" >
+                  <input type="radio" name="gender" id="dot-2" value="Féminin" (change)="onFeminin($event)" >
+                  <span class="gender-title">Genre</span>
+                  <div class="category">
+                    <label for="dot-1">
+                      <span class="dot one"></span>
+                      <span class="gender">Masculin</span>
+                    </label>
+                    <label for="dot-2">
+                      <span class="dot two"></span>
+                      <span class="gender">Féminin</span>
+                    </label>
+                  </div>
+                </div>
+
+
+                <div class="button">
+                  <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+                  <button type="submit" class="btn btn-secondary" [disabled]="myForm.invalid">Soumettre</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          
+	</div>
+</div>

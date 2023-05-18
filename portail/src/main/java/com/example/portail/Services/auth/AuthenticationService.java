@@ -42,9 +42,10 @@ public class AuthenticationService {
       userToUpdate.setEmail(request.getEmail());
       userToUpdate.setPassword(passwordEncoder.encode(request.getPassword()));
       userToUpdate.setBirthday(request.getBirthday());
-      userToUpdate.setNom_utilisateur(request.getUsername());
       userToUpdate.setGenre(request.getGenre());
       userToUpdate.setPhoneNumber(request.getPhoneNumber());
+      userToUpdate.setAdresse(request.getAdresse());
+      userToUpdate.setCin(request.getCin());
       return ResponseEntity.badRequest()
           .body("Email deja utilisé, votre demande est en cours et la demande a été mis à jour!");
     }
@@ -52,7 +53,6 @@ public class AuthenticationService {
       return ResponseEntity.badRequest().body("Email déjà utilisé!");
     }
     User user1 = User.builder()
-        .nom_utilisateur(request.getUsername())
         .password(passwordEncoder.encode(request.getPassword()))
         .email(request.getEmail())
         .firstName(request.getFirstName())
@@ -62,6 +62,8 @@ public class AuthenticationService {
         .status(1)
         .role(Role.ROLE_EMPLOYEE)
         .phoneNumber(request.getPhoneNumber())
+        .adresse(request.getAdresse())
+        .cin(request.getCin())
         .build();
     userRepo.save(user1);
     return ResponseEntity.ok("demande envoyée!");
@@ -106,7 +108,6 @@ public class AuthenticationService {
 
   public ResponseEntity<?> addAdmin(RegisterRequest request) {
     User user = User.builder()
-        .nom_utilisateur(request.getUsername())
         .password(passwordEncoder.encode(request.getPassword()))
         .email(request.getEmail())
         .firstName(request.getFirstName())
@@ -116,6 +117,8 @@ public class AuthenticationService {
         .status(3)
         .matricule("123456789")
         .role(Role.ROLE_ADMIN)
+        .adresse(request.getAdresse())
+        .cin(request.getCin())
         .build();
     userRepo.save(user);
     return ResponseEntity.ok("admin inséré!");
@@ -127,7 +130,11 @@ public class AuthenticationService {
   }
 
   public User getUserById(long id) {
-    return userRepo.findById(id).get(); //ne9sa el methode fel controller
+    return userRepo.findById(id).get(); // ne9sa el methode fel controller
+  }
+
+  public User getUserByMatricule(String matricule) {
+    return userRepo.findByMatricule(matricule).get();
   }
 
 }

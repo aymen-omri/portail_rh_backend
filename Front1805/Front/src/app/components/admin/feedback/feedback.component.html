@@ -1,0 +1,90 @@
+<div class="container">
+    <h1>Feedback</h1>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="feedback-type">Type:</label>
+        <select class="form-control" id="feedback-type" name="feedback-type" [(ngModel)]="feedbackType" (change)="onFeedbackTypeChange($event)">
+          <option value="" selected disabled>Selectionnet le type de Feedback</option>
+          <option value="improvement-suggestion">Suggestion</option>
+          <option value="problem">Problème</option>
+          <option value="avis">Avis sur la plateforme</option>
+          <option value="other">Autre</option>
+        </select>
+      </div>
+      
+      <div *ngIf="feedbackType == 'improvement-suggestion'">
+        <div class="form-group">
+          <label for="suggestion">Suggestion:</label>
+          <input type="text" class="form-control" id="suggestion" name="suggestion" [(ngModel)]="suggestion">
+        </div>
+        
+        <div class="form-group">
+          <label for="suggestion-description">Description de la suggestion:</label>
+          <textarea class="form-control" id="suggestion-description" name="suggestion-description" [(ngModel)]="description"></textarea>
+        </div>
+      </div>
+      
+      <div *ngIf="feedbackType == 'problem'">
+        <div class="form-group">
+          <label for="problem">C'est quoi le problème que vous avez rencontré?</label>
+          <input type="text" class="form-control" id="problem" name="problem" [(ngModel)]="problem">
+        </div>
+        
+        <div class="form-group">
+          <label for="problem-description">Description du problème</label>
+          <textarea class="form-control" id="problem-description" name="problem-description" [(ngModel)]="description"></textarea>
+        </div>
+      </div>
+      
+      <div *ngIf="feedbackType == 'avis'">
+        <div class="form-group">
+          <label for="avis">Quel est votre avis?</label>
+          <input type="text" class="form-control" id="avis" name="avis" [(ngModel)]="avis">
+        </div>
+        
+        <div class="form-group">
+          <label for="avis-description">Description:</label>
+          <textarea class="form-control" id="avis-description" name="avis-description" [(ngModel)]="description"></textarea>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="rating">Quel est votre satisfaction avec la plateforme?</label>
+            <div class="rating">
+                <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+          </div>
+        </div>
+
+
+        <!-- <div class="form-group">
+            <label for="satisfaction">Satisfaction:</label>
+            <select id="satisfaction" [(ngModel)]="satisfaction">
+              <option value="1">1 - Not Satisfied</option>
+              <option value="2">2 - Somewhat Satisfied</option>
+              <option value="3">3 - Satisfied</option>
+              <option value="4">4 - Very Satisfied</option>
+              <option value="5">5 - Extremely Satisfied</option>
+            </select>
+        </div> -->
+      
+      </div>
+
+      <div *ngIf="feedbackType == 'other'">
+        <div class="form-group">
+          <label for="other-title">Titre:</label>
+          <input type="text" class="form-control" id="other-title" name="other-title" [(ngModel)]="title">
+        </div>
+        
+        <div class="form-group">
+          <label for="other-description">Description:</label>
+          <textarea class="form-control" id="other-description" name="other-description" [(ngModel)]="description"></textarea>
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-primary" *ngIf="feedbackType !== ''">Soumettre</button>
+    </form>
+  </div>

@@ -1,0 +1,22 @@
+<button class="return-button" (click)="goBack()">
+  <i class="fas fa-arrow-left"></i> Retour
+</button>
+
+<form #congeForm="ngForm" (ngSubmit)="onSubmit(congeForm)">
+  <div class="form-group">
+    <label for="start-date">Start Date:</label>
+    <input type="date" class="form-control" id="start-date" name="start-date" ngModel required>
+  </div>
+
+  <div class="form-group">
+    <label for="end-date">End Date:</label>
+    <input type="date" class="form-control" id="end-date" name="end-date" ngModel required>
+  </div>
+
+  <div class="form-group">
+    <label for="reason">Reason for Leave:</label>
+    <textarea class="form-control" id="reason" name="reason" ngModel required></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

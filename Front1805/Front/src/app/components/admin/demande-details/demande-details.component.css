@@ -1,0 +1,23 @@
+.user-details {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.user-details p {
+  margin: 5px 0;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons button {
+  margin: 10px;
+}

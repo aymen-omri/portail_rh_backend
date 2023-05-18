@@ -1,0 +1,36 @@
+<button class="return-button" (click)="goBack()">
+  <i class="fas fa-arrow-left"></i> Retour
+</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date Début</th>
+      <th>Date Fin</th>
+      <th>Type Congé</th>
+      <th>Raison</th>
+      <th>Statut</th>
+      <th>Date Soumission</th>
+      <th>Date Acceptation</th>
+      <th>Date Rejet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tbody>
+      <tr *ngFor="let demande of demandesConge">
+        <td>{{ demande.id }}</td>
+        <td>{{ demande.dateDebut | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ demande.dateFin | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ demande.type }}</td>
+        <td>{{ demande.raison }}</td>
+        <td>{{ demande.statut_demande }}</td>
+        <td>{{ demande.dateSoumission | date: 'yyyy-MM-dd' }}</td>
+        <td *ngIf="demande.statut_demande === 'ACCEPTEE'" >{{ demande.dateAcceptation | date: 'yyyy-MM-dd' }}</td>
+        <td *ngIf="demande.statut_demande === 'REFUSEE'" >{{ demande.dateRejet | date: 'yyyy-MM-dd' }}</td>
+        <td *ngIf="demande.statut_demande === 'EN_COURS'">
+          <button (click)="deleteDemandeConge(demande.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

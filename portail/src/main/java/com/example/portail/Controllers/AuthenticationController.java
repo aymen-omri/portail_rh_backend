@@ -52,4 +52,14 @@ public class AuthenticationController {
         return ResponseEntity.ok(service.getAllUsers());
     }
 
+    @GetMapping("/byid/{id}")
+    public ResponseEntity<?> getById(@PathVariable("id") long id) {
+        return ResponseEntity.ok(service.getUserById(id));
+    }
+
+    @GetMapping("/bymat/{matricule}")
+    public ResponseEntity<?> getByMatricule(@PathVariable("matricule") String matricule) {
+        return ResponseEntity.ok(service.getUserByMatricule(matricule));
+    }
+
 }

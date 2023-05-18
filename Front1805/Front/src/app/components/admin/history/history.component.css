@@ -1,0 +1,44 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+a {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.details {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.details h2 {
+  margin-top: 0;
+}
+
+.pass{
+  cursor: pointer;
+}
+.pass:hover{
+  text-decoration: underline;
+}

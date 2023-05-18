@@ -1,4 +1,5 @@
 package com.example.portail.Services.auth;
+
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,13 +11,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegisterRequest {
-    private String username;
     private String password;
     private String email;
+    private String matricule;
     private String firstName;
     private String lastName;
     private LocalDate birthday;
-    private String phoneNumber ; 
+    private String cin;
     private String genre;
     private int status;
+    private String phoneNumber;
+    private String adresse;
 }

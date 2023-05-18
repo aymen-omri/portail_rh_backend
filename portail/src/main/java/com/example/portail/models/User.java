@@ -27,18 +27,18 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_user;
-    private String nom_utilisateur;
     private String password;
     private String email;
     private String matricule;
     private String firstName;
     private String lastName;
     private LocalDate birthday;
+    private String cin;
     private String genre;
     private int status;
     private String phoneNumber;
+    private String adresse;
     private Role role;
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
