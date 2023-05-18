@@ -1,16 +1,14 @@
 package com.example.portail.Services;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.Base64;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.portail.Repositories.FeeRepo;
+import com.example.portail.Repositories.DemandeDeclarRepo;
 import com.example.portail.Repositories.PdfFileRepo;
-import com.example.portail.models.Fee;
+import com.example.portail.models.DemandeDeclar;
 import com.example.portail.models.PdfFile;
 
 import jakarta.transaction.Transactional;
@@ -20,28 +18,20 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Transactional
 public class PdfService {
-    final PdfFileRepo pdfFileRepo;
-    final FeeRepo feeRepo;
 
-    public void AddPdf(Collection<MultipartFile> files, long id_fee) {
-        Fee fee = feeRepo.findById(id_fee).orElse(null);
-        if (fee != null) {
-            List<PdfFile> pdfFiles = new ArrayList<>();
-            files.forEach(file -> {
-                try {
-                    var pdf = PdfFile.builder()
-                            .name(file.getOriginalFilename())
-                            .type(file.getContentType())
-                            .file(file.getBytes())
-                            .fee(fee) // Set the Fee entity using the setter method
-                            .build();
-                    pdfFiles.add(pdf);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            pdfFileRepo.saveAll(pdfFiles);
-        }
+    final PdfFileRepo pdfFileRepo;
+    final DemandeDeclarRepo demandeDeclarRepo;
+
+    public void insertFile(MultipartFile file, long id_demande_declar) throws IOException {
+        DemandeDeclar demandeDeclar = demandeDeclarRepo.findById(id_demande_declar).get();
+        var fileToSave = PdfFile.builder()
+                .type(file.getContentType())
+                .name(file.getName())
+                .file(file.getBytes())
+                .demandeDeclar(demandeDeclar)
+                .src("data:" + file.getContentType() + ";base64," + Base64.getEncoder().encodeToString(file.getBytes()))
+                .build();
+        pdfFileRepo.save(fileToSave);
     }
 
 }

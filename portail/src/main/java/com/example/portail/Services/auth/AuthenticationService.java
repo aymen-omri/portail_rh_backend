@@ -36,7 +36,20 @@ public class AuthenticationService {
   public ResponseEntity<?> register(RegisterRequest request) {
     Optional<User> user = userRepo.findByEmail(request.getEmail());
     if (user.isPresent() && user.get().getStatus() == 1) {
-      return ResponseEntity.badRequest().body("Email deja utilisé, votre demande est en cours!");
+      User userToUpdate = user.get();
+      userToUpdate.setFirstName(request.getFirstName());
+      userToUpdate.setLastName(request.getLastName());
+      userToUpdate.setEmail(request.getEmail());
+      userToUpdate.setPassword(passwordEncoder.encode(request.getPassword()));
+      userToUpdate.setBirthday(request.getBirthday());
+      userToUpdate.setNom_utilisateur(request.getUsername());
+      userToUpdate.setGenre(request.getGenre());
+      userToUpdate.setPhoneNumber(request.getPhoneNumber());
+      return ResponseEntity.badRequest()
+          .body("Email deja utilisé, votre demande est en cours et la demande a été mis à jour!");
+    }
+    if (user.isPresent() && user.get().getStatus() == 3) {
+      return ResponseEntity.badRequest().body("Email déjà utilisé!");
     }
     User user1 = User.builder()
         .nom_utilisateur(request.getUsername())
@@ -48,6 +61,7 @@ public class AuthenticationService {
         .genre(request.getGenre())
         .status(1)
         .role(Role.ROLE_EMPLOYEE)
+        .phoneNumber(request.getPhoneNumber())
         .build();
     userRepo.save(user1);
     return ResponseEntity.ok("demande envoyée!");
@@ -110,6 +124,10 @@ public class AuthenticationService {
   public ResponseEntity<List<User>> getAllUsers() {
     return ResponseEntity
         .ok(userRepo.findAll().stream().filter(user -> user.getRole().equals(Role.ROLE_EMPLOYEE)).toList());
+  }
+
+  public User getUserById(long id) {
+    return userRepo.findById(id).get(); //ne9sa el methode fel controller
   }
 
 }
